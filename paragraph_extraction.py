@@ -7,6 +7,8 @@
 import os
 #mention the parent folder
 parent_folder = 'txt/'
+threshold_for_no_of_lines = 5
+threshold_for_no_of_words_per_line = 6
 
 #get list of text files
 def get_list_of_text_files_from_parent_folder(parent_folder):
@@ -33,7 +35,7 @@ def extract_clean_paras(file_path):
 			while(lines[lineno].strip()):
 				i += 1
 				lstOfWords = lines[lineno].split()
-				if len(lstOfWords) >= 6:
+				if len(lstOfWords) >= threshold_for_no_of_words_per_line:
 					para.append(lines[lineno])
 				else:
 					flag = False
@@ -41,7 +43,7 @@ def extract_clean_paras(file_path):
 						lineno += 1
 				lineno += 1
 			
-			if flag and i >= 5:
+			if flag and i >= threshold_for_no_of_lines:
 				lstOfParas.append(para)
 		
 	return lstOfParas
